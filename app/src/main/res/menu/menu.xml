@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/activity1"
+        android:title="Actvity1"
+        android:orderInCategory="1"
+        android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_help"
+        />
+
+    <item
+        android:id="@+id/activity2"
+        android:title="Activity2"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_add"
+        />
+
+    <item
+        android:id="@+id/activity3"
+        android:title="Activity3"
+        android:orderInCategory="3"
+        android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        />
+
+    <item
+        android:id="@+id/activity4"
+        android:title="Activity4"
+        android:orderInCategory="4"
+        android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        />
+
+    <item
+        android:id="@+id/about"
+        android:title="About"
+        android:orderInCategory="5"
+        android:showAsAction="never"
+        />
+
+</menu>
