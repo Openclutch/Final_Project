@@ -5,7 +5,6 @@
         android:title="Actvity1"
         android:orderInCategory="1"
         android:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_help"
         />
 
     <item
@@ -13,7 +12,6 @@
         android:title="Activity2"
         android:orderInCategory="2"
         android:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_add"
         />
 
     <item
@@ -21,7 +19,6 @@
         android:title="Activity3"
         android:orderInCategory="3"
         android:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_my_calendar"
         />
 
     <item
@@ -29,7 +26,6 @@
         android:title="Activity4"
         android:orderInCategory="4"
         android:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_my_calendar"
         />
 
     <item
