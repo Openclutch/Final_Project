@@ -2,6 +2,7 @@ package leeboelsma.final_project;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -9,9 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,9 @@ public class Weather extends Activity {
 
     private String TAG = Weather.class.getSimpleName();
 
+    // Sharing button things...
+    private ShareActionProvider mShareActionProvider;
+
     // URL to get Weather in JSON
     private static String url = "https://api.darksky.net/forecast/" +
             "969149eeb2f7dba899c3395808a73c25/" + //Api key
@@ -42,7 +48,23 @@ public class Weather extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the description of your menu items in the menu
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        // Locate MenuItem with ShareActionProvider
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        // Fetch and store ShareActionProvider
+        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+
+
+
         return true;
+    }
+
+    // Call to update the share intent
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
     }
 
     @Override
@@ -179,7 +201,15 @@ public class Weather extends Activity {
 
             pic_icon.setImageResource(icons.get(this.icon));
 
+            // Set your sharing settings based on what the weather is
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Current Weather");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "It currently feels like " +
+                    temp + "C outside.");
+
+            setShareIntent(sharingIntent);
+
         }
     }
-
 }
