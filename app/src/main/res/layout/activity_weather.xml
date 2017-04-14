@@ -8,15 +8,14 @@
     tools:context="leeboelsma.final_project.Weather">
 
     <ImageView
-        android:src="@android:color/background_dark"
+        android:id="@+id/weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/weather_icon"
-        android:minHeight="100dp"
-        android:minWidth="100dp"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:layout_alignParentTop="true" />
+        android:layout_marginTop="10dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp" />
 
     <TextView
         android:text="Last updated: "
@@ -65,12 +64,12 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-        android:layout_width="48dp"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible" />
+        android:layout_above="@+id/weather_lastupdated"
+        android:layout_alignEnd="@+id/weather_icon"
+        android:layout_alignStart="@+id/weather_icon"
+        android:layout_alignTop="@+id/weather_icon" />
 
 </RelativeLayout>

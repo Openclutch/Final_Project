@@ -55,8 +55,6 @@ public class Weather extends Activity {
         // Fetch and store ShareActionProvider
         mShareActionProvider = (ShareActionProvider) item.getActionProvider();
 
-
-
         return true;
     }
 
@@ -104,19 +102,21 @@ public class Weather extends Activity {
                     this.lastupdated = new java.util.Date((long)unix_time*1000); //convert from unix
                     publishProgress(20);
 
-                    this.summary = weather_currently.getString("summary");
+                    this.icon = weather_currently.getString("icon");
                     publishProgress(40);
 
-                    this.icon = weather_currently.getString("icon");
+                    this.precipProbability = weather_currently.getDouble("precipProbability") * 100;
                     publishProgress(60);
 
-                    this.precipProbability = weather_currently.getDouble("precipProbability") * 100;
-                    publishProgress(80);
-
                     this.temp = weather_currently.getDouble("apparentTemperature");
-                    publishProgress(90);
+                    publishProgress(70);
 
                     this.humidity = weather_currently.getDouble("humidity") * 100;
+                    publishProgress(80);
+
+                    JSONObject weather_summary = jsonObj.getJSONObject("hourly");
+
+                    this.summary = weather_summary.getString("summary");
                     publishProgress(100);
 
 
@@ -179,7 +179,7 @@ public class Weather extends Activity {
 
             // Set all activity views
             text_lastupdated.append(String.valueOf(this.lastupdated));
-            text_summary.append(this.icon);
+            text_summary.append(this.summary);
             text_precipProbability.append(String.valueOf((int) this.precipProbability) + "%");
             text_temp.append(String.valueOf(this.temp) + "C");
             text_humidity.append(String.valueOf((int) this.humidity) + "%");
@@ -206,7 +206,7 @@ public class Weather extends Activity {
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Current Weather");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "It currently feels like " +
-                    temp + "C outside.");
+                    temp + "C outside. It will be " + summary);
 
             setShareIntent(sharingIntent);
 
