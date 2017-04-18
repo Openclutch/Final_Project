@@ -23,7 +23,10 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".alainMainActivity"
+            android:label="@string/title_activity_alain_main"></activity>
     </application>
 
 </manifest>
