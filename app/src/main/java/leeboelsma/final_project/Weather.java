@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -35,6 +37,9 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Weather extends Activity {
+
+    // This is for the shared settings
+    private static final int SETTINGS_RESULT = 1;
 
     private String TAG = Weather.class.getSimpleName();
 
@@ -81,12 +86,14 @@ public class Weather extends Activity {
                 return true;
             }
             case R.id.activity4: {
-                // wait for Ed to push code then we can reference it.
-                //Intent intent = new Intent(this, MainEdActivity.class);
-                //startActivity(intent);
+                // Ed's Activity
+                Intent intent = new Intent(this, MainEdActivity.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.settings: {
+                Intent intent = new Intent(this, Settings.class);
+                startActivityForResult(intent, SETTINGS_RESULT);
                 return true;
             }
             case R.id.about: {

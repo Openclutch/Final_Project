@@ -1,4 +1,6 @@
 <resources>
+
+	<!-- START Lee's strings -->
     <string name="app_name">Final_Project</string>
     <string name="about_text">This app contains 4 different views. \n 1 - current weather stats, \n 2 - bus stop information, \n 3 - city wide weather stats, \n 4 - capture pictures and store them.</string>
     <string name="about_title">About this app</string>
@@ -7,5 +9,52 @@
     <string name="weather_precipitation_guess">Precipitation guess:&#160;</string>
     <string name="weather_feels_like">Feels like:&#160;</string>
     <string name="weather_humidity">Humidity:&#160;</string>
+	<!-- END Lee's strings -->
 
+	<!-- START Ed's strings -->
+	<string name="ed_save">Save</string>
+    <string name="ed_load">Load</string>
+    <string name="ed_update">UpDate</string>
+    <string name="ed_delete">Delete</string>
+    <string name="ed_cancel">Cancel</string>
+    <string name="ed_enable">Enable</string>
+    <string name="ed_disable">Disable</string>
+    <string name="ed_review">Review</string>
+    <string name="ed_comment">Comment</string>
+    <string name="ed_load_title">Images</string>
+    <string name="ed_load_message">Reload Default Images or Remove all Pictures</string>
+    <string name="ed_about_title">About Photo App</string>
+    <string name="ed_about">
+        \n\tThis app can upload 24 test images to the\n
+        \tscreen or delete all images from.\n\n
+        \tYou can also take new photos and add then\n
+        \tto the screen once you have approved them.\n\n
+        \tNew photos or test images are timestamp\n
+        \tand can include comments.\n\n
+        \tYou can individually update comments and\n
+        \tdelete images and photos anytime.
+    </string>
+	<!-- END Ed's strings -->
+
+    <!-- START Alain's strings -->
+    <string name="alainBusNumber">Bus #</string>
+    <string name="alainBusDirection">Direction:</string>
+    <string name="alainChooseStopButtonName">Get Bus times for this stop</string>
+    <string name="alain_timeTableTitle">Timetable</string>
+    <string name="alain_timeTablestopName">bus stop</string>
+    <string name="alainTimeTableBusNumber">###</string>
+    <string name="alainTimetablebusDirection">Direction</string>
+    <string name="alain_currentTime">12:00</string>
+    <string name="about_box_title">About This Bus App</string>
+    <string name="about_box_text"> This bus app allows you to search for bus schedule of any bus for
+        any stop on the OCTranspo grid from the routes point of view. Enjoy using my little app!</string>
+    <string name="webpage1" > <u>www.octranspo.com</u></string>
+    <string name="alain_about">About</string>
+    <string name="alain_activity4">Activity 4</string>
+    <string name="alain_activity3">Alain\'s Bus App</string>
+    <string name="alain_activity2">Activity 2</string>
+    <string name="alain_activity1">Activity 1</string>
+    <string name="settings">Settings</string>
+    <!-- END Alain's strings -->
+	
 </resources>

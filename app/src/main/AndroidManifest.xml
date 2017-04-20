@@ -22,6 +22,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".CityWeather_Tej"></activity>
+        <activity android:name=".MainEdActivity"></activity>
+        <activity android:name=".DisplayActivity"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".alainMainActivity"></activity>
+
     </application>
 
 </manifest>
