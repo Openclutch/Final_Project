@@ -1,14 +1,10 @@
 package leeboelsma.final_project;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,18 +14,11 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class Weather extends Activity {
 
@@ -55,6 +44,18 @@ public class Weather extends Activity {
         // Fetch and store ShareActionProvider
         mShareActionProvider = (ShareActionProvider) item.getActionProvider();
 
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.activity3: {
+                // Launch the Alain's app:
+                startActivity(new Intent(this, alainMainActivity.class));
+                return true;
+            }
+        }
         return true;
     }
 
@@ -99,7 +100,7 @@ public class Weather extends Activity {
                     JSONObject weather_currently = jsonObj.getJSONObject("currently");
 
                     long unix_time = weather_currently.getLong("time");
-                    this.lastupdated = new java.util.Date((long)unix_time*1000); //convert from unix
+                    this.lastupdated = new java.util.Date(unix_time *1000); //convert from unix
                     publishProgress(20);
 
                     this.icon = weather_currently.getString("icon");

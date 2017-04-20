@@ -3,15 +3,19 @@ package leeboelsma.final_project;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -30,6 +34,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class alainMainActivity extends Activity {
@@ -45,6 +50,7 @@ public class alainMainActivity extends Activity {
     SQLiteDatabase db;
     ArrayList<String> listOfStops=null;
     ArrayList<String> listOfStopsID = null;
+    HashMap<String,LongLat> coor=null;
     int stopIndex=0;
     SharedPreferences settings;
 
@@ -149,21 +155,110 @@ public class alainMainActivity extends Activity {
     }
 
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+// inflate the description of your alainmenu items in the alainmenu
+        getMenuInflater().inflate(R.menu.alainmenu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.alain_launchGoogle: {
+                LongLat point = coor.get(listOfStops.get(stopIndex));
+                String geoURI = String.format("google.streetview:cbll=%f,%f", point.x, point.y);
+                Uri geo = Uri.parse(geoURI);
+                Intent geoMap = new Intent(Intent.ACTION_VIEW, geo);
+                startActivity(geoMap);
+                return true;
+            }
+
+            case R.id.settings: {
+
+                Toast toast = Toast.makeText(this,"debug message", Toast.LENGTH_SHORT);
+                toast.show();
+
+                return true;
+            }
+
+            case R.id.activity_1: {
+                // Launch the Main weatyer activity
+                startActivity(new Intent(this, Weather.class));
+
+                return true;
+            }
+
+
+            case R.id.activity_2: {
+                return true;
+            }
+            case R.id.activity_3: {
+
+                // Create an alias for our Activity to use in inner classes.
+                final Activity activity = this;
+                // Builder: create the builder and setup the title of the dialog.
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage("You selected the current activity");
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                builder.setPositiveButton(android.R.string.ok, null); // a null listener defaults to dismissing the dialog.
+                dialog.show();
+                return true;
+            }
+
+            case R.id.activity_4: {
+                return true;
+            }
+
+
+            case R.id.menu_about: {
+                // Create an alias for our Activity to use in inner classes.
+                final Activity activity = this;
+                // Builder: create the builder and setup the title of the dialog.
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                // inflate our about box layout
+                LayoutInflater li = LayoutInflater.from(activity);
+                View view = li.inflate(R.layout.alain_about_layout_box, null);
+                // set it as the main view
+                builder.setView(view);
+                // let the builder know that we want a ok button
+                builder.setPositiveButton(android.R.string.ok, null); // a null listener defaults to dismissing the dialog.
+                builder.show();
+                return true;
+            }
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
     protected void setStopList(String direction){
         listOfStops = new ArrayList<String>();
         listOfStopsID = new ArrayList<String>();
+        coor= new HashMap<String,LongLat>();
+
         String num = routeNumber.getText().toString();
-        Cursor res = db.rawQuery("SELECT stop_sequence, stop_name, stops.stop_id FROM stop_times, stops " +
-                "WHERE stop_times.trip_id = " +
+        Cursor res = db.rawQuery("SELECT stop_name, stops.stop_id, stops.stop_lat,stops.stop_lon " +
+                "FROM stop_times, stops WHERE stop_times.trip_id = " +
                 "(SELECT trip_id FROM trips WHERE trips.trip_headsign ='" +direction +"' " +
                 "AND trips.route_id = (select route_id FROM routes where routes.route_short_name = '"
                 + num + "' ) " +
                 "limit 1) AND stop_times.stop_id = stops.stop_id", null);
         int j=0;
+        LongLat point;
         while(res.moveToNext()){
-            listOfStops.add(res.getString(1));
-            listOfStopsID.add(res.getString(2));
+            point = new LongLat();
+            listOfStops.add(res.getString(0));
+            listOfStopsID.add(res.getString(1));
+            point.x=Double.parseDouble(res.getString(2));
+            point.y=Double.parseDouble(res.getString(3));
+            coor.put(listOfStops.get(j), point);
+            j++;
         }
+        stopIndex=0;
         busStop.setText(listOfStops.get(stopIndex));
     }
 
@@ -177,9 +272,11 @@ public class alainMainActivity extends Activity {
         protected String doInBackground(String... params) {
             String stopid = listOfStopsID.get(stopIndex);
             String routen= daBusNumber+"-256";
-            res = db.rawQuery("SELECT trip_id, departure_time FROM stop_times WHERE " +
+            String sql = "SELECT trip_id, departure_time FROM stop_times WHERE " +
                     " stop_times.stop_id ='"+ stopid + "' AND trip_id IN (SELECT trip_id FROM trips WHERE route_id='"+routen+"' " +
-                    "AND trip_headsign='" +direction +"' )ORDER BY departure_time", null);
+                    "AND trip_headsign='" +direction +"' )ORDER BY departure_time";
+
+            res = db.rawQuery(sql, null);
             return "data retrieved";
         }
 
@@ -192,6 +289,7 @@ public class alainMainActivity extends Activity {
             displayTimesForBus(res);
         }
     }
+
 
     protected void displayTimesForBus(Cursor times) {
 
@@ -350,9 +448,9 @@ public class alainMainActivity extends Activity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View itemSelected,
                                                int selectedItemPosition, long selectedId) {
-                        stopIndex=0;
-                        setStopList(parent.getItemAtPosition(selectedItemPosition).toString());
+
                         direction = parent.getItemAtPosition(selectedItemPosition).toString();
+                        setStopList(direction);
                         SharedPreferences.Editor editor = settings.edit();
                         editor.putString(ALAIN_PREFERENCES_BUSDIR, Integer.toString(selectedItemPosition));
                         editor.commit();
@@ -380,4 +478,9 @@ public class alainMainActivity extends Activity {
         return false;
     }
 
+}
+
+class LongLat{
+    double x;
+    double y;
 }

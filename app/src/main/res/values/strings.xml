@@ -75,6 +75,7 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_alain_main">alainzBuzApp</string>
 
+
     <string name="alainBusNumber">Bus #</string>
     <string name="alainBusDirection">Direction:</string>
     <string name="alainChooseStopButtonName">Get Bus times for this stop</string>
@@ -83,4 +84,15 @@
     <string name="alainTimeTableBusNumber">###</string>
     <string name="alainTimetablebusDirection">Direction</string>
     <string name="alain_currentTime">12:00</string>
+    <string name="about_box_title">About This Bus App</string>
+    <string name="about_box_text"> This bus app allows you to search for bus schedule of any bus for
+        any stop on the OCTranspo grid from the routes point of view. Enjoy using my little app!</string>
+    <string name="webpage1" > <u>www.octranspo.com</u></string>
+    <string name="alain_about">About</string>
+    <string name="alain_activity4">Activity 4</string>
+    <string name="alain_activity3">Alain\'s Bus App</string>
+    <string name="alain_activity2">Activity 2</string>
+    <string name="alain_activity1">Weather</string>
+    <string name="settings">Settings</string>
+
 </resources>
