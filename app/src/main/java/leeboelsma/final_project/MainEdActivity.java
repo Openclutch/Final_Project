@@ -27,6 +27,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.method.LinkMovementMethod;
@@ -81,8 +82,20 @@ public class MainEdActivity extends Activity {
         myHelper = new MyHelper(this, "CAMERA.db");
         database = myHelper.getReadableDatabase();
         this.bitmaps = new ArrayList<Bitmap>();
-        dbFillArray(database, bitmaps);
-        database.close();
+
+        AsyncTask task = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object...params) {
+                dbFillArray(database, bitmaps);
+                database.close();
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Object result) {
+                adapter.notifyDataSetChanged();
+            }
+        };
+        task.execute();
 
         GridView gridView = (GridView) findViewById(R.id.ed_gridview);
         adapter = new ImageAdapter(this, bitmaps);
@@ -142,17 +155,31 @@ public class MainEdActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // inflate the description of your menu items in the menu
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_all, menu);
 
         // Locate MenuItem with ShareActionProvider
-        MenuItem item = menu.findItem(R.id.menu_item_share);
+        //MenuItem item = menu.findItem(R.id.menu_item_share);
 
         // Fetch and store ShareActionProvider
-        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+        //mShareActionProvider = (ShareActionProvider) item.getActionProvider();
 
 
         return true;
     }
+
+//    // Call to update the share intent
+//    private void setShareIntent(Intent shareIntent) {
+//        if (mShareActionProvider != null) {
+//            mShareActionProvider.setShareIntent(shareIntent);
+//        }
+//    }
+//    private Intent createShareIntent() {
+//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//        shareIntent.setType("text/plain");
+//        shareIntent.putExtra(Intent.EXTRA_TEXT,
+//                "https://www.algonquincollege.com/");
+//        return shareIntent;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -163,9 +190,14 @@ public class MainEdActivity extends Activity {
                 return true;
             }
             case R.id.activity2: {
+                // Tej's Activity
+                Intent intent = new Intent(this, WeatherForecast_Tej.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.activity3: {
+                Intent intent = new Intent(this, alainMainActivity.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.activity4: {
@@ -178,6 +210,10 @@ public class MainEdActivity extends Activity {
             }
             case R.id.about: {
                 getAbout();
+                return true;
+            }
+            case R.id.menu_item_share: {
+                getToast();
                 return true;
             }
             default:
@@ -261,11 +297,21 @@ public class MainEdActivity extends Activity {
                 adapter.notifyDataSetInvalidated();
                 myHelper = new MyHelper(MainEdActivity.this, "CAMERA.db");
                 database = myHelper.getWritableDatabase();
-                dbReload(database, getTime());
-                dbFillArray(database, bitmaps);
-                database.close();
 
-                adapter.notifyDataSetChanged();
+                AsyncTask task = new AsyncTask() {
+                    @Override
+                    protected Object doInBackground(Object...params) {
+                        dbReload(database, getTime());
+                        dbFillArray(database, bitmaps);
+                        database.close();
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Object result) {
+                        adapter.notifyDataSetChanged();
+                    }
+                };
+                task.execute();
 
                 setToast(enableDebug, "Reload Drawable Images");
             }
@@ -359,12 +405,12 @@ public class MainEdActivity extends Activity {
                 R.drawable.photo7, R.drawable.photo8,
                 R.drawable.photo9, R.drawable.photo10,
                 R.drawable.photo11, R.drawable.photo12,
-                R.drawable.photo13, R.drawable.photo14,
-                R.drawable.photo15, R.drawable.photo16,
-                R.drawable.photo17, R.drawable.photo18,
-                R.drawable.photo19, R.drawable.photo20,
-                R.drawable.photo21, R.drawable.photo22,
-                R.drawable.photo23, R.drawable.photo24
+//                R.drawable.photo13, R.drawable.photo14,
+//                R.drawable.photo15, R.drawable.photo16,
+//                R.drawable.photo17, R.drawable.photo18,
+//                R.drawable.photo19, R.drawable.photo20,
+//                R.drawable.photo21, R.drawable.photo22,
+//                R.drawable.photo23, R.drawable.photo24
         };
 
         try {

@@ -176,18 +176,26 @@ public class alainMainActivity extends Activity {
 
             case R.id.settings: {
 
-                Toast toast = Toast.makeText(this,"debug message", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent intent = new Intent(this, Settings.class);
+                startActivityForResult(intent, 0); // need to change
+
+                // using above instead
+                //Toast toast = Toast.makeText(this,"debug message", Toast.LENGTH_SHORT);
+                //toast.show();
 
                 return true;
             }
 
             case R.id.activity_1: {
+                Intent intent = new Intent(this, Weather.class);
+                startActivity(intent);
                 return true;
             }
 
-
             case R.id.activity_2: {
+                // Tej's Activity
+                Intent intent = new Intent(this, WeatherForecast_Tej.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.activity_3: {
@@ -205,9 +213,11 @@ public class alainMainActivity extends Activity {
             }
 
             case R.id.activity_4: {
+                // Ed's Activity
+                Intent intent = new Intent(this, MainEdActivity.class);
+                startActivity(intent);
                 return true;
             }
-
 
             case R.id.menu_about: {
                 // Create an alias for our Activity to use in inner classes.

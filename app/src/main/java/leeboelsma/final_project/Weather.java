@@ -80,9 +80,15 @@ public class Weather extends Activity {
                 return true;
             }
             case R.id.activity2: {
+                // Tej's Activity
+                Intent intent = new Intent(this, WeatherForecast_Tej.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.activity3: {
+                // Alain's Activity
+                Intent intent = new Intent(this, alainMainActivity.class);
+                startActivity(intent);
                 return true;
             }
             case R.id.activity4: {

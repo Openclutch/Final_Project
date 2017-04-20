@@ -197,7 +197,7 @@ public class DisplayActivity extends Activity {
     }
 
     private byte[] readFromFile(String filename) {
-        byte[] buffer = new byte[4096];
+        byte[] buffer = new byte[1024000];
         try {
             FileInputStream input = openFileInput(filename);
             input.read(buffer);
