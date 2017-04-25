@@ -1,76 +1,60 @@
 <resources>
+
+	<!-- START Lee's strings -->
     <string name="app_name">Final_Project</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="about_text">This app contains 4 different views. \n 1 - current weather stats, \n 2 - bus stop information, \n 3 - city wide weather stats, \n 4 - capture pictures and store them.</string>
+    <string name="about_title">About this app</string>
+    <string name="weather_last_updated">Last updated:&#160;</string>
+    <string name="weather_summary">Summary:&#160;</string>
+    <string name="weather_precipitation_guess">Precipitation guess:&#160;</string>
+    <string name="weather_feels_like">Feels like:&#160;</string>
+    <string name="weather_humidity">Humidity:&#160;</string>
+	<!-- END Lee's strings -->
 
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
+	<!-- START Ed's strings -->
+	<string name="ed_save">Save</string>
+    <string name="ed_load">Load</string>
+    <string name="ed_update">UpDate</string>
+    <string name="ed_delete">Delete</string>
+    <string name="ed_cancel">Cancel</string>
+    <string name="ed_enable">Enable</string>
+    <string name="ed_disable">Disable</string>
+    <string name="ed_review">Review</string>
+    <string name="ed_comment">Comment</string>
+    <string name="ed_load_title">Images</string>
+    <string name="ed_load_message">Reload Default Images or Remove all Pictures</string>
+    <string name="ed_about_title">About Photo App</string>
+    <string name="ed_about">
+        \n\tThis app can upload 24 test images to the\n
+        \tscreen or delete all images from.\n\n
+        \tYou can also take new photos and add then\n
+        \tto the screen once you have approved them.\n\n
+        \tNew photos or test images are timestamp\n
+        \tand can include comments.\n\n
+        \tYou can individually update comments and\n
+        \tdelete images and photos anytime.
     </string>
+	<!-- END Ed's strings -->
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
+    <!-- START Alain's strings -->
+    <string name="alainBusNumber">Bus #</string>
+    <string name="alainBusDirection">Direction:</string>
+    <string name="alainChooseStopButtonName">Get Bus times for this stop</string>
+    <string name="alain_timeTableTitle">Timetable</string>
+    <string name="alain_timeTablestopName">bus stop</string>
+    <string name="alainTimeTableBusNumber">###</string>
+    <string name="alainTimetablebusDirection">Direction</string>
+    <string name="alain_currentTime">12:00</string>
+    <string name="about_box_title">About This Bus App</string>
+    <string name="about_box_text"> This bus app allows you to search for bus schedule of any bus for
+        any stop on the OCTranspo grid from the routes point of view. Enjoy using my little app!</string>
+    <string name="webpage1" > <u>www.octranspo.com</u></string>
+    <string name="alain_about">About</string>
+    <string name="alain_activity4">Activity 4</string>
+    <string name="alain_activity3">Activity 3</string>
+    <string name="alain_activity2">Activity 2</string>
+    <string name="alain_activity1">Activity 1</string>
+    <string name="settings">Settings</string>
+    <!-- END Alain's strings -->
+	
 </resources>

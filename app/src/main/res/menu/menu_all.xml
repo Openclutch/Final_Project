@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/activity1"
+        android:title="@string/alain_activity1"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/activity2"
+        android:title="@string/alain_activity2"
+        android:orderInCategory="3"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/activity3"
+        android:title="@string/alain_activity3"
+        android:orderInCategory="4"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/activity4"
+        android:title="@string/alain_activity4"
+        android:orderInCategory="5"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:orderInCategory="6"
+        android:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/about"
+        android:title="About"
+        android:orderInCategory="7"
+        android:showAsAction="never"
+        />
+
+</menu>

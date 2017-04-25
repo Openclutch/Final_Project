@@ -12,13 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:minHeight="100dp"
         android:minWidth="100dp" />
 
     <TextView
-        android:text="Last updated: "
+        android:text="@string/weather_last_updated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/weather_lastupdated"
@@ -27,7 +27,7 @@
         android:layout_alignStart="@+id/weather_icon" />
 
     <TextView
-        android:text="Summary: "
+        android:text="@string/weather_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/weather_summary"
@@ -36,7 +36,7 @@
         android:layout_marginTop="10dp" />
 
     <TextView
-        android:text="Precipitation guess: "
+        android:text="@string/weather_precipitation_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/weather_icon"
@@ -45,7 +45,7 @@
         android:id="@+id/weather_precipProbability" />
 
     <TextView
-        android:text="Feels like: "
+        android:text="@string/weather_feels_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/weather_icon"
@@ -54,7 +54,7 @@
         android:id="@+id/weather_temp" />
 
     <TextView
-        android:text="Humidity: "
+        android:text="@string/weather_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/weather_icon"

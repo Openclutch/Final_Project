@@ -21,10 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".CityWeather_Tej"></activity>
+        <activity android:name=".MainEdActivity"></activity>
+        <activity android:name=".DisplayActivity"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".alainMainActivity"></activity>
+        <activity android:name=".WeatherForecast_Tej"></activity>
+
     </application>
 
 </manifest>

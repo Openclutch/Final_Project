@@ -1,17 +1,22 @@
 package leeboelsma.final_project;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Xml;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ShareActionProvider;
@@ -33,6 +38,9 @@ import java.util.StringTokenizer;
 
 public class Weather extends Activity {
 
+    // This is for the shared settings
+    private static final int SETTINGS_RESULT = 1;
+
     private String TAG = Weather.class.getSimpleName();
 
     // Sharing button things...
@@ -46,6 +54,7 @@ public class Weather extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // inflate the description of your menu items in the menu
         getMenuInflater().inflate(R.menu.menu, menu);
 
@@ -56,6 +65,70 @@ public class Weather extends Activity {
         mShareActionProvider = (ShareActionProvider) item.getActionProvider();
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Create an alias for our Activity to use in inner classes.
+        final Activity activity = this;
+
+        switch (item.getItemId()) {
+            case R.id.activity1: {
+                Intent intent = new Intent(this, Weather.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.activity2: {
+                // Tej's Activity
+                Intent intent = new Intent(this, WeatherForecast_Tej.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.activity3: {
+                // Alain's Activity
+                Intent intent = new Intent(this, alainMainActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.activity4: {
+                // Ed's Activity
+                Intent intent = new Intent(this, MainEdActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.settings: {
+                Intent intent = new Intent(this, Settings.class);
+                startActivityForResult(intent, SETTINGS_RESULT);
+                return true;
+            }
+            case R.id.about: {
+
+                // Builder: create the builder and setup the title of the dialog.
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle(R.string.about_title);
+
+                // Builder: .... customize the dialog (see subsections)
+                // inflate our about box layout
+                LayoutInflater li = LayoutInflater.from(activity);
+                View view = li.inflate(R.layout.custom_dialog, null);
+                // set it as the main view
+                builder.setView(view);
+                // let the builder know that we want a ok button
+                builder.setPositiveButton(android.R.string.ok, null);
+                // a null listener defaults to dismissing the dialog.
+
+                // Instanciate the dialog, and show it
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                dialog.show();
+
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item); //not sure what this does.
+        }
     }
 
     // Call to update the share intent
